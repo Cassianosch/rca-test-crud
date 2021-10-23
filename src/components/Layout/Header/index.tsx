@@ -61,7 +61,7 @@ export const Header = ({ onOpen }: HeaderProps): JSX.Element => {
             </Flex>
             <Flex direction="row" alignItems="center" gridGap="4">
                 <Text fontSize={{ xs: 'lg', sm: 'xl' }}>
-                    Olá, Cassiano
+                    Hello, Cassiano
                 </Text>
                 <Avatar name="Cassiano" size={avatarSize} />
                 <Popover placement="bottom">
@@ -83,8 +83,8 @@ export const Header = ({ onOpen }: HeaderProps): JSX.Element => {
                         <PopoverArrow />
                         <PopoverCloseButton />
                         <PopoverBody>
-                            <Button variant="ghost" onClick={() => alert('Deslogou :)')}>
-                                <Text>Sair</Text>
+                            <Button variant="ghost" onClick={() => alert('Logout :)')}>
+                                <Text>Logout</Text>
                             </Button>
                         </PopoverBody>
                     </PopoverContent>

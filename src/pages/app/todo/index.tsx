@@ -19,7 +19,7 @@ export const TodoPage = (): JSX.Element => {
     return (
         <Container title="Todo" type="app">
             <Flex direction="column" gridGap="8">
-                <Heading fontSize="2xl">Cadastro de Todos</Heading>
+                <Heading fontSize="2xl">Registration of Todos</Heading>
                 <TodoForm
                     editing={editing}
                     setEditing={setEditing}
@@ -27,7 +27,7 @@ export const TodoPage = (): JSX.Element => {
                     handleUpdate={handleUpdate}
                 />
             </Flex>
-            <Heading fontSize="2xl">Todos cadastrados</Heading>
+            <Heading fontSize="2xl">Registered Todos</Heading>
             <Table<TodoData>
                 columns={['title', 'completed']}
                 data={rows}

@@ -50,7 +50,7 @@ export function SmallTable<T>(props: TableProps<T>): JSX.Element {
                     isDisabled={isDeleteAllDisabled}>
                     <Flex direction="row" align="center">
                         <Icon as={RiDeleteBinLine} w="6" h="6" mr="4" />
-                        <Text>Deletar selecionados</Text>
+                        <Text>Delete Selected</Text>
                     </Flex>
                 </Button>
             </Box>

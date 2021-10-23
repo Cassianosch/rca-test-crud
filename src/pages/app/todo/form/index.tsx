@@ -8,7 +8,7 @@ import { FormInput } from '../../../../components/Form/Input';
 import { FormSelect } from '../../../../components/Form/Select';
 import { statusOptions } from './data';
 
-const planFormSchema: yup.SchemaOf<TodoFormData> = yup.object().shape({
+const todoFormSchema: yup.SchemaOf<TodoFormData> = yup.object().shape({
     title: yup.string().required('Title is mandatory'),
     completed: yup.boolean(),
 });
@@ -27,13 +27,12 @@ export const TodoForm = (props: TodoFormProps): JSX.Element => {
 
     const {
         register,
-        control,
         setValue,
         handleSubmit,
         reset,
         formState: { errors, isSubmitting },
     } = useForm<TodoFormData>({
-        resolver: yupResolver(planFormSchema),
+        resolver: yupResolver(todoFormSchema),
     });
 
     const onSubmit = useCallback<SubmitHandler<TodoFormData>>(
@@ -46,7 +45,7 @@ export const TodoForm = (props: TodoFormProps): JSX.Element => {
             } catch (err) {
                 toast({
                     status: 'error',
-                    title: `Erro`,
+                    title: `Error`,
                     description: err,
                     isClosable: true,
                 });
@@ -58,7 +57,7 @@ export const TodoForm = (props: TodoFormProps): JSX.Element => {
     useEffect(() => {
         if (editing) {
             Object.keys(editing).forEach((key: keyof TodoFormData) => {
-                if (key in planFormSchema.fields) {
+                if (key in todoFormSchema.fields) {
                     setValue(key, editing[key]);
                 }
             });
@@ -104,7 +103,7 @@ export const TodoForm = (props: TodoFormProps): JSX.Element => {
                             variant="ghost"
                             onClick={() => setEditing(null)}>
                             <Text fontSize="sm" fontWeight="normal">
-                                Cancelar edição
+                                Cancel Edit
                             </Text>
                         </Button>
                     )}
@@ -112,7 +111,7 @@ export const TodoForm = (props: TodoFormProps): JSX.Element => {
                         type="submit"
                         variant="form-submit"
                         isLoading={isSubmitting}>
-                        <Text>Salvar</Text>
+                        <Text>Save</Text>
                     </Button>
                 </Flex>
             </GridItem>

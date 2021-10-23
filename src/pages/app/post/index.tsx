@@ -1,56 +1,40 @@
 import React, { useState, useEffect } from 'react';
 import { Flex, Heading, Text } from '@chakra-ui/react';
 import { Container } from '../../../components/Layout';
-import { PlanForm } from './form';
+import { PostForm } from './form';
 import { Table } from '../../../components/Table';
-import { PlanData } from '../../../interfaces/plan';
-// import usePlan from '../../../hooks/usePlan';
+import { PostData } from '../../../interfaces/post';
+import usePost from '../../../hooks/usePost';
 
 export const PostPage = (): JSX.Element => {
-    const [editing, setEditing] = useState<PlanData | null>(null);
+    const [editing, setEditing] = useState<PostData | null>(null);
 
-    // const { rows, handleGetRows, handleCreate, handleUpdate, handleDelete } =
-    //     usePlan();
+    const { rows, handleGetRows, handleCreate, handleUpdate, handleDelete } =
+        usePost();
 
-    // useEffect(() => {
-    //     handleGetRows();
-    // }, [handleGetRows]);
+    useEffect(() => {
+        handleGetRows();
+    }, [handleGetRows]);
 
     return (
-        <Container title="Planos" type="app">
+        <Container title="Post" type="app">
             <Flex direction="column" gridGap="8">
-                <Heading fontSize="2xl">Cadastro de planos</Heading>
-                {/* <PlanForm
+                <Heading fontSize="2xl">Registration of Posts</Heading>
+                <PostForm
                     editing={editing}
                     setEditing={setEditing}
                     handleCreate={handleCreate}
                     handleUpdate={handleUpdate}
-                /> */}
+                />
             </Flex>
-            <Heading fontSize="2xl">Planos cadastrados</Heading>
-            {/* <Table<PlanData>
-                columns={['name', 'price', 'slug', 'status']}
+            <Heading fontSize="2xl">Registered Posts</Heading>
+            <Table<PostData>
+                columns={['title', 'body']}
                 data={rows}
                 onClickEdit={(row) => setEditing(row)}
-                onClickDelete={({ id_plan }) => handleDelete(id_plan)}
+                onClickDelete={({ id }) => handleDelete(id)}
                 paginationProps={{ total: 0, current: 1 }}
-                customRenderers={{
-                    price: (value) => (
-                        <Text as="span" fontWeight="normal">
-                            {` ${Number(value).toLocaleString('pt-BR', {
-                                style: 'currency',
-                                currency: 'BRL',
-                            })}`}
-                        </Text>
-                    ),
-                    status: (value) => (
-                        <Text as="span" fontWeight="normal">
-                            {' '}
-                            {value === 'ACTIVE' ? 'ATIVO' : 'INATIVO'}
-                        </Text>
-                    ),
-                }}
-            /> */}
+            />
         </Container>
     );
 };
